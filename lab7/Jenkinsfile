@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Download Code') {
+            steps {
+                git branch: 'main', url: 'https://github.com/yaroslav23sp/System-programming-and-OS-administration.git'
+            }
+        }
+
+        stage('Prepare Script') {
+            steps {
+                sh 'chmod +x count_files.sh'
+            }
+        }
+
+        stage('Execute Script') {
+            steps {
+                echo 'Launching the script...'
+                sh './count_files.sh'
+            }
+        }
+    }
+}
